@@ -1,19 +1,35 @@
+// src/App.js
 import React from 'react';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
+import Layout from './Layout';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RequireRole from './RequireRole';
+import AdminPage from './pages/AdminPage';
+import Logout from './Logout';
 
-function App() {
+export default function App() {
   return (
-    <Container style={{ marginTop: '2rem', textAlign: 'center' }}>
-      <Typography variant="h4" gutterBottom>
-        Material UI 예시
-      </Typography>
-      <Button variant="contained" color="primary">
-        클릭하세요
-      </Button>
-    </Container>
+    <BrowserRouter>
+      <AuthProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="logout" element={<Logout />} />
+            {/* Admin 전용 페이지 */}
+            <Route
+              path="admin"
+              element={
+                <RequireRole role="ROLE_ADMIN">
+                  <AdminPage />
+                </RequireRole>
+              }
+            />
+          </Routes>
+        </Layout>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;
