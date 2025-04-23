@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RequireRole from './RequireRole';
 import AdminPage from './pages/AdminPage';
-import Logout from './Logout';
+import Logout from './pages/Logout';
 
 export default function App() {
   return (

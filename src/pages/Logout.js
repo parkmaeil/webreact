@@ -1,7 +1,7 @@
-// src/Logout.js
+// src/pages/Logout.js
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from '../AuthContext';
 
 export default function Logout() {
   const { logout } = useContext(AuthContext);
